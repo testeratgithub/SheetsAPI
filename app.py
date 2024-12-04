@@ -49,7 +49,7 @@ def clear():
 @app.route('/cache', methods=["GET"])
 def cache():
     try: 
-        response = requests.get(apiurl('/values/Projects!A2:B2'))
+        response = requests.get(apiurl('/values/Projects!A2:B'))
         response.raise_for_status()
         for data in (response.json()).get("values",[]):
             projects_list[data[0]] = data[1]
