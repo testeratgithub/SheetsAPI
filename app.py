@@ -23,6 +23,8 @@ def updateprojects_list(data):
         file.write(json.dumps(data))
 
 def listtojson(data):
+    if data == []: return []
+    
     header = data[0]
     rows = data[1:]
 
@@ -72,7 +74,7 @@ def fetchdata(name):
         response = requests.get(apiurl(f'/values/{projects_list[name]}'))
         response.raise_for_status()
         
-        return listtojson((response.json()).get("values",[]))
+        return jsonify(listtojson((response.json()).get("values",[]))),200
     
     except requests.exceptions.RequestException as e: 
         return jsonify({"error": "Failed to fetch data", "details": str(e)}), 500
@@ -81,4 +83,4 @@ def fetchdata(name):
 
 
 if __name__ == '__main__':
-    app.run(port=8089,debug=True)
+    app.run(debug=True)
