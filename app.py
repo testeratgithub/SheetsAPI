@@ -34,9 +34,9 @@ def listtojson(data):
     
     return json_data
 
-@app.route('/')
-def home():
-    return "Hello, Suren!"
+# @app.route('/')
+# def home():
+#     return "Hello, Suren!"
 
 @app.route('/flush', methods=["GET"])
 def clear():
