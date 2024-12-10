@@ -82,28 +82,6 @@ def fetchdata(name):
         return jsonify({"error": "Failed to fetch data", "details": str(e)}), 500
     
 
-@app.route("/proxy/<url>", methods=["GET"])
-def proxy(url):
-    target_url = f'{url}'
-
-    # Forward the request to the Superset server
-    response = requests.request(
-        method=request.method,
-        url=target_url,
-        headers=request.headers,
-        params=request.args,
-        data=request.data,
-        cookies=request.cookies,
-        allow_redirects=False,
-    )
-
-    # Create a response to send back to the client
-    return Response(
-        response.content,
-        status=response.status_code,
-        content_type=response.headers['Content-Type']
-    )
-
 
 if __name__ == '__main__':
     app.run(debug=True)
