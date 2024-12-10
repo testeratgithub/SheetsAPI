@@ -44,7 +44,7 @@ def listtojson(data):
 
 @app.route('/flush', methods=["GET"])
 def clear():
-    updateprojects_list('')
+    updateprojects_list({})
 
 @app.route('/cache', methods=["GET"])
 def cache():
